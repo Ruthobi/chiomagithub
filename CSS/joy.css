@@ -1,0 +1,26 @@
+
+.girl{
+    color: pink;
+    background-color: brown;
+    text-align: left;
+    text-transform: capitalize;
+}
+.boy{
+    color: blue;
+    background-color: orange;
+    text-align: center;
+}
+
+#male{
+    color: purple;
+    background-color: black;
+    text-align: right;
+    text-transform: lowercase;
+}
+.fan{
+    color: white;
+    background-color: red;
+    text-transform: uppercase;
+    text-align: center; 
+    
+}

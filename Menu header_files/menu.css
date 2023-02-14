@@ -1,0 +1,14 @@
+.header-div{
+background-color: cadetblue;
+height: 150px;
+display: flex;
+justify-content: space-between;
+}
+.img-div{
+  width: 100px;  
+}
+.home-div{
+    color: rgba(30, 250, 20, 1);
+}
+
+

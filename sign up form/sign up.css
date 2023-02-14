@@ -1,0 +1,26 @@
+.div1{
+    width: 700px;
+    height: 500px;
+    background-color: aqua;
+    display: flex;
+    justify-content: center;
+}
+.head{
+    color: blueviolet;
+    text-align: center;
+}
+.content{
+    margin: 30px;
+}
+*{
+    margin: 10px;
+    padding: 5px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+.but{
+     background-color: red;
+     color: white;
+     font-size: 15px;
+     cursor: pointer;
+}

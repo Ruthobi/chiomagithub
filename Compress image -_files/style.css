@@ -1,0 +1,68 @@
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+}
+
+.banner {
+  background: #fff;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  cursor: pointer;
+  height: 250px;
+  overflow: hidden;
+  position: relative;
+  position: absolute;
+  width: 300px;
+}
+.banner .MyliusModernBold {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "MyliusModern-Bold", sans-serif;
+  line-height: 1;
+}
+.banner .MyliusModernRegular {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "MyliusModern-Regular", sans-serif;
+  line-height: 1;
+}
+
+.preloader {
+  background: white;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: 999;
+}
+.preloader .circle {
+  animation: spin 0.5s linear infinite;
+  border: 5px solid #ddd;
+  border-bottom-color: #333;
+  border-radius: 50%;
+  height: 40px;
+  left: 50%;
+  margin-left: -22.5px;
+  margin-top: -22.5px;
+  position: absolute;
+  top: 50%;
+  transition: all 0.7s ease-in-out;
+  width: 40px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

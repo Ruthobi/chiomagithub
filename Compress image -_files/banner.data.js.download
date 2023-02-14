@@ -1,0 +1,162 @@
+'use strict';
+/**
+ * Dynamic Data
+ */
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+Banner.prototype.loadDynamicData = function () {
+  var _this = this;
+
+  var isJsonString = function isJsonString(item) {
+    item = typeof item !== 'string' ? JSON.stringify(item) : item;
+
+    try {
+      item = JSON.parse(item);
+    } catch (e) {
+      return false;
+    }
+
+    if (_typeof(item) === 'object' && item !== null) {
+      return true;
+    }
+
+    return false;
+  };
+
+  var logger = function logger() {
+    if (!Enabler.isServingInLiveEnvironment()) {
+      for (var _len = arguments.length, string = new Array(_len), _key = 0; _key < _len; _key++) {
+        string[_key] = arguments[_key];
+      }
+
+      console.log(string);
+    }
+  };
+
+  this.banner = document.querySelector('.banner');
+  this.bannerWidth = this.banner.offsetWidth;
+  this.bannerHeight = this.banner.offsetHeight;
+  Enabler.setProfileId(10809536);
+  var devDynamicContent = {};
+  devDynamicContent.feed = [{}];
+  devDynamicContent.feed[0]._id = 0;
+  devDynamicContent.feed[0].id_Disabled_studio = 1;
+  devDynamicContent.feed[0].reportingLabel_InputEditor_studio = "North-America-Original-Generic-300x600";
+  devDynamicContent.feed[0].startDate_DateEditor_studio = {};
+  devDynamicContent.feed[0].startDate_DateEditor_studio.RawValue = "2020/05/19 23:59 (+00:00)";
+  devDynamicContent.feed[0].startDate_DateEditor_studio.UtcValue = 1589932740000;
+  devDynamicContent.feed[0].endDate_DateEditor_studio = {};
+  devDynamicContent.feed[0].endDate_DateEditor_studio.RawValue = "2023/02/20 23:59 (+00:00)";
+  devDynamicContent.feed[0].endDate_DateEditor_studio.UtcValue = 1676937540000;
+  devDynamicContent.feed[0].active_InputEditor_studio = true;
+  devDynamicContent.feed[0].landingPage_InputEditor_studio = {};
+  devDynamicContent.feed[0].landingPage_InputEditor_studio.Url = "https://www.britishairways.com/travel/home/public/fr_fr?DM1_Channel=DISP&DM1_Campaign=EUR_FR_FR_PRETARG_DV360_1022-FREUCONQ4_&DM1_Site=DV360";
+  devDynamicContent.feed[0].landingSuffix_InputEditor_studio = "";
+  devDynamicContent.feed[0].extraFilter_InputEditor_studio = "";
+  devDynamicContent.feed[0].Code = "";
+  devDynamicContent.feed[0].Route = "";
+  devDynamicContent.feed[0].Origin = "";
+  devDynamicContent.feed[0].Destination = "";
+  devDynamicContent.feed[0].Currency = "";
+  devDynamicContent.feed[0].Price = "";
+  devDynamicContent.feed[0].Deal = "";
+  devDynamicContent.feed[0].Terms = "T&Cs apply";
+  devDynamicContent.feed[0].flyrFilter1 = "";
+  devDynamicContent.feed[0].flyrFilter2 = "";
+  devDynamicContent.feed[0].Region = "";
+  devDynamicContent.feed[0].variant_Disabled_banner = "North-America-Original-Generic";
+  devDynamicContent.feed[0].language_InputEditor_banner = "English";
+  devDynamicContent.feed[0].scriptDir_InputEditor_banner = "https:\/\/s0.2mdn.net\/creatives\/assets\/4739984\/";
+  devDynamicContent.feed[0].styleDir_InputEditor_banner = "https:\/\/s0.2mdn.net\/creatives\/assets\/4739984\/";
+  devDynamicContent.feed[0].assetDir_InputEditor_banner = "https:\/\/s0.2mdn.net\/creatives\/assets\/3788829\/";
+  devDynamicContent.feed[0].animationScript_InputEditor_banner = "default.js";
+  devDynamicContent.feed[0].templateStyle_InputEditor_banner = "font.css";
+  devDynamicContent.feed[0].webFont_InputEditor_banner = "{\"custom\":{\"families\":[\"MyliusModern-Regular:400\", \"MyliusModern-Bold:700\"]}}";
+  devDynamicContent.feed[0].backgroundColor_ColorEditor_asset = "#fff";
+  devDynamicContent.feed[0].backgroundImageUrl_InputEditor_asset = {};
+  devDynamicContent.feed[0].backgroundImageUrl_InputEditor_asset.Url = "https://banners.jellyfishhosting.net/cdp/demos/ba-international-consideration-q1-2023/assets/_blank.png";
+  devDynamicContent.feed[0].logoUrl_InputEditor_asset = {};
+  devDynamicContent.feed[0].logoUrl_InputEditor_asset.Url = "https://banners.jellyfishhosting.net/cdp/demos/ba-international-consideration-q1-2023/assets/ba-logo-white-300x600.png";
+  devDynamicContent.feed[0].image1Url_InputEditor_asset = {};
+  devDynamicContent.feed[0].image1Url_InputEditor_asset.Url = "https://banners.jellyfishhosting.net/cdp/demos/ba-international-consideration-q1-2023/assets/west-africa-img3-300x600.jpg";
+  devDynamicContent.feed[0].image2Url_InputEditor_asset = {};
+  devDynamicContent.feed[0].image2Url_InputEditor_asset.Url = "https://banners.jellyfishhosting.net/cdp/demos/ba-international-consideration-q1-2023/assets/west-africa-img2-300x600.jpg";
+  devDynamicContent.feed[0].image3Url_InputEditor_asset = {};
+  devDynamicContent.feed[0].image3Url_InputEditor_asset.Url = "https://banners.jellyfishhosting.net/cdp/demos/ba-international-consideration-q1-2023/assets/west-africa-img1-300x600.jpg";
+  devDynamicContent.feed[0].image4Url_InputEditor_asset = {};
+  devDynamicContent.feed[0].image4Url_InputEditor_asset.Url = "https://banners.jellyfishhosting.net/cdp/demos/ba-international-consideration-q1-2023/assets/_blank.png?v=2";
+  devDynamicContent.feed[0].image5Url_InputEditor_asset = {};
+  devDynamicContent.feed[0].image5Url_InputEditor_asset.Url = "https://banners.jellyfishhosting.net/cdp/demos/ba-international-consideration-q1-2023/assets/_blank.png";
+  devDynamicContent.feed[0].image6Url_InputEditor_asset = {};
+  devDynamicContent.feed[0].image6Url_InputEditor_asset.Url = "https://banners.jellyfishhosting.net/cdp/demos/ba-international-consideration-q1-2023/assets/_blank.png";
+  devDynamicContent.feed[0].image7Url_InputEditor_asset = {};
+  devDynamicContent.feed[0].image7Url_InputEditor_asset.Url = "https://banners.jellyfishhosting.net/cdp/demos/ba-international-consideration-q1-2023/assets/_blank.png";
+  devDynamicContent.feed[0].image8Url_InputEditor_asset = {};
+  devDynamicContent.feed[0].image8Url_InputEditor_asset.Url = "https://banners.jellyfishhosting.net/cdp/demos/ba-international-consideration-q1-2023/assets/_blank.png";
+  devDynamicContent.feed[0].image9Url_InputEditor_asset = {};
+  devDynamicContent.feed[0].image9Url_InputEditor_asset.Url = "https://banners.jellyfishhosting.net/cdp/demos/ba-international-consideration-q1-2023/assets/ba-logo-color-300x600.png";
+  devDynamicContent.feed[0].image10Url_InputEditor_asset = {};
+  devDynamicContent.feed[0].image10Url_InputEditor_asset.Url = "https://banners.jellyfishhosting.net/cdp/demos/ba-international-consideration-q1-2023/assets/one-world-bottom-left-300x600.png";
+  devDynamicContent.feed[0].backgroundImageStyle_InputEditor_asset = "{\"retina\":\"true\"}";
+  devDynamicContent.feed[0].logoStyle_InputEditor_asset = "{\"retina\":\"true\"}";
+  devDynamicContent.feed[0].image1Style_InputEditor_asset = "{\"retina\":\"true\",\"label\":\"BG Image 3 [Image1]\"}";
+  devDynamicContent.feed[0].image2Style_InputEditor_asset = "{\"retina\":\"true\",\"label\":\"BG Image 2 [Image2]\"}";
+  devDynamicContent.feed[0].image3Style_InputEditor_asset = "{\"retina\":\"true\",\"label\":\"BG Image 1 [Image3]\"}";
+  devDynamicContent.feed[0].image4Style_InputEditor_asset = "{}";
+  devDynamicContent.feed[0].image5Style_InputEditor_asset = "{}";
+  devDynamicContent.feed[0].image6Style_InputEditor_asset = "{}";
+  devDynamicContent.feed[0].image7Style_InputEditor_asset = "{}";
+  devDynamicContent.feed[0].image8Style_InputEditor_asset = "{}";
+  devDynamicContent.feed[0].image9Style_InputEditor_asset = "{\"retina\":\"true\",\"label\":\"Logo 2 [Image9]\",\"zIndex\":\"2\"}";
+  devDynamicContent.feed[0].image10Style_InputEditor_asset = "{\"retina\":\"true\",\"label\":\"Extra Logos [Image10]\",\"zIndex\":\"2\"}";
+  devDynamicContent.feed[0].shape1_InputEditor_asset = "{\"label\":\"Solid White [shape1]\",\"width\":\"300\",\"height\":\"600\",\"backgroundColor\":\"white\",\"zIndex\":\"1\"}";
+  devDynamicContent.feed[0].shape2_InputEditor_asset = "{}";
+  devDynamicContent.feed[0].shape3_InputEditor_asset = "{}";
+  devDynamicContent.feed[0].shape4_InputEditor_asset = "{}";
+  devDynamicContent.feed[0].shape5_InputEditor_asset = "{\"label\":\"Extra Data [Shape5]\",\"LockupOffSetY\":\"-15\",\"imageLoops\":\"0\"}";
+  devDynamicContent.feed[0].textStyle_InputEditor_text = "{\"color\":\"#004899\",\"fontSize\":\"13\",\"fontFamily\":\"MyliusModern-Bold\",\"align-items\":\"center\",\"textAlign\":\"center\",\"line-height\":\"1.35em\",\"letter-spacing\":\"0.15em\",\"zIndex\":\"2\",\"text-transform\":\"uppercase\",\"-webkit-font-smoothing\":\"antialiased\",\"-moz-osx-font-smoothing\":\"grayscale\",\"margin-left\":\"0.15em\"}";
+  devDynamicContent.feed[0].textGrid1_InputEditor_text = "{\"display\":\"flex\",\"justify-content\":\"center\",\"align-items\":\"center\",\"textAlign\":\"center\",\"flex-direction\":\"column\",\"width\":\"300\",\"zIndex\":\"2\",\"top\":\"246\"}";
+  devDynamicContent.feed[0].textGrid2_InputEditor_text = "{\"display\":\"flex\",\"justify-content\":\"center\",\"align-items\":\"center\",\"textAlign\":\"center\",\"flex-direction\":\"column\",\"width\":\"300\",\"zIndex\":\"2\",\"top\":\"263\"}";
+  devDynamicContent.feed[0].textGrid3_InputEditor_text = "{\"display\":\"flex\",\"justify-content\":\"center\",\"align-items\":\"center\",\"textAlign\":\"center\",\"flex-direction\":\"column\",\"width\":\"300\",\"zIndex\":\"2\",\"label\":\"Price Lockup [Grid 3]\",\"top\":\"245\"}";
+  devDynamicContent.feed[0].textGrid4_InputEditor_text = "{\"justify-content\":\"center\",\"align-items\":\"center\",\"textAlign\":\"center\",\"flex-direction\":\"row\",\"width\":\"300\",\"zIndex\":\"2\",\"parent\":\"textGrid3\",\"position\":\"relative\",\"order\":\"2\",\"display\":\"flex\",\"padding\":\"14px 0px\",\"left\":\"-5\",\"arr\":\"1\"}";
+  devDynamicContent.feed[0].textGrid5_InputEditor_text = "{\"display\":\"flex\",\"justify-content\":\"center\",\"align-items\":\"center\",\"textAlign\":\"center\",\"flex-direction\":\"column\",\"width\":\"300\",\"zIndex\":\"2\",\"label\":\"Generic Grid [Grid 5]\",\"top\":\"270\"}";
+  devDynamicContent.feed[0].textGrid6_InputEditor_text = "{}";
+  devDynamicContent.feed[0].textGrid7_InputEditor_text = "{}";
+  devDynamicContent.feed[0].textGrid8_InputEditor_text = "{}";
+  devDynamicContent.feed[0].textGrid9_InputEditor_text = "{}";
+  devDynamicContent.feed[0].textGrid10_InputEditor_text = "{}";
+  devDynamicContent.feed[0].copy1_InputEditor_text = "{\"innerHTML\":\"A\",\"varParent\":\"textGrid1\",\"width\":\"300\",\"position\":\"relative\",\"styles\":\"textStyle\",\"color\":\"white\",\"fontSize\":\"18\"}";
+  devDynamicContent.feed[0].copy2_InputEditor_text = "{\"innerHTML\":\"NORTH AMERICAN\",\"varParent\":\"textGrid1\",\"styles\":\"textStyle\",\"color\":\"transparent\",\"position\":\"relative\",\"fontSize\":\"24\",\"-webkit-text-stroke\":\"1.25px white\"}";
+  devDynamicContent.feed[0].copy3_InputEditor_text = "{\"innerHTML\":\"ORIGINAL\",\"varParent\":\"textGrid1\",\"position\":\"relative\",\"styles\":\"textStyle\",\"color\":\"white\",\"fontSize\":\"18\",\"letter-spacing\":\"0.3em\",\"margin-left\":\"0.3em\"}";
+  devDynamicContent.feed[0].copy4_InputEditor_text = "{\"innerHTML\":\"EXPLORE NORTH AMERICA<br> WITH OUR NETWORK OF<br> OVER 200 DESTINATIONS\",\"varParent\":\"textGrid2\",\"width\":\"300\",\"position\":\"relative\",\"styles\":\"textStyle\",\"line-height\":\"1.8em\",\"letter-spacing\":\"0.13em\"}";
+  devDynamicContent.feed[0].copy5_InputEditor_text = "{\"varParent\":\"textGrid3\",\"styles\":\"textStyle\",\"color\":\"transparent\",\"position\":\"relative\",\"fontSize\":\"42\",\"-webkit-text-stroke\":\"1.3px #004899\",\"order\":\"1\",\"line-height\":\"1em\",\"arr\":\"0\"}";
+  devDynamicContent.feed[0].copy6_InputEditor_text = "{\"varParent\":\"textGrid4\",\"position\":\"relative\",\"styles\":\"textStyle\",\"fontSize\":\"10\",\"text-align\":\"right\",\"max-width\":\"70px\"}";
+  devDynamicContent.feed[0].copy7_InputEditor_text = "{\"varParent\":\"textGrid4\",\"position\":\"relative\",\"width\":\"1\",\"height\":\"35\",\"backgroundColor\":\"#004899\",\"margin\":\"0px 12px\"}";
+  devDynamicContent.feed[0].copy8_InputEditor_text = "{\"innerHTML\":\"A$\",\"varParent\":\"textGrid4\",\"position\":\"relative\",\"styles\":\"textStyle\",\"fontSize\":\"14\",\"Currency\":\"A$\",\"align-self\":\"flex-start\",\"padding\":\"0px 3px\",\"order\":\"5\"}";
+  devDynamicContent.feed[0].copy9_InputEditor_text = "{\"innerHTML\":\"XXX\",\"varParent\":\"textGrid4\",\"position\":\"relative\",\"Price\":\"XXX\",\"styles\":\"textStyle\",\"fontSize\":\"43\",\"line-height\":\"0.9em\",\"letter-spacing\":\"-0.01em\",\"order\":\"4\"}";
+  devDynamicContent.feed[0].copy10_InputEditor_text = "{\"varParent\":\"textGrid3\",\"position\":\"relative\",\"styles\":\"textStyle\",\"order\":\"3\",\"fontSize\":\"6\",\"letter-spacing\":\"0.33em\",\"padding-top\":\"0px\",\"arr\":\"2\"}";
+  devDynamicContent.feed[0].copy11_InputEditor_text = "{\"innerHTML\":\"GREAT FARES TO\",\"varParent\":\"textGrid5\",\"width\":\"300\",\"position\":\"relative\",\"styles\":\"textStyle\",\"fontSize\":\"14\"}";
+  devDynamicContent.feed[0].copy12_InputEditor_text = "{\"innerHTML\":\"NORTH AMERICA\",\"varParent\":\"textGrid5\",\"styles\":\"textStyle\",\"color\":\"transparent\",\"position\":\"relative\",\"fontSize\":\"24\",\"-webkit-text-stroke\":\"1.1px #004899\"}";
+  devDynamicContent.feed[0].copy13_InputEditor_text = "{}";
+  devDynamicContent.feed[0].copy14_InputEditor_text = "{}";
+  devDynamicContent.feed[0].copy15_InputEditor_text = "{}";
+  devDynamicContent.feed[0].copy16_InputEditor_text = "{}";
+  devDynamicContent.feed[0].copy17_InputEditor_text = "{}";
+  devDynamicContent.feed[0].copy18_InputEditor_text = "{}";
+  devDynamicContent.feed[0].copy19_InputEditor_text = "{}";
+  devDynamicContent.feed[0].legal_InputEditor_text = "{\"innerHTML\":\"T&Cs apply\",\"font-family\":\"MyliusModern-Bold\",\"font-size\":\"7\",\"bottom\":\"15\",\"left\":\"37\",\"color\":\"#999999\",\"zIndex\":\"2\",\"xCheck\":\"Terms\"}";
+  devDynamicContent.feed[0].ctaStyle_InputEditor_text = "{\"innerHTML\":\"BOOK NOW\",\"fontFamily\":\"MyliusModern-Bold\",\"letter-spacing\":\"0.15em\",\"zIndex\":\"10\",\"font-size\":\"10\",\"color\":\"white\",\"text-align\":\"center\",\"top\":\"452\",\"width\":\"118\",\"backgroundColor\":\"#004899\",\"height\":\"27\",\"display\":\"flex\",\"justify-content\":\"center\",\"align-items\":\"center\",\"left\":\"91\",\"borderRadius\":\"2\",\"rollOverBG\":\"white\",\"rollOverText\":\"#004899\",\"border\":\"1px solid #004899\"}";
+  devDynamicContent.feed[0].UUID = "0ca2bd3f-1a9c-4e6a-ae2c-37c6044d7009";
+  Enabler.setDevDynamicContent(devDynamicContent);
+  var baseData = dynamicContent.feed[0] || devDynamicContent.feed[0];
+  this.bannerData = dynamicContent || devDynamicContent;
+  Object.keys(baseData).forEach(function (x) {
+    if (typeof _this.bannerData.feed[0][x] === 'string' && isJsonString(_this.bannerData.feed[0][x])) {
+      _this.bannerData.feed[0][x] = JSON.parse(_this.bannerData.feed[0][x]);
+    } else {
+      _this.bannerData.feed[0][x] = _this.bannerData.feed[0][x];
+    }
+  });
+  logger(this.bannerWidth, this.bannerHeight, this.bannerData);
+};

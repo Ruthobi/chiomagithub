@@ -1,0 +1,53 @@
+.first-div{
+    background-color: lightblue; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    
+}
+.dove{
+    width: 100%;
+    
+}
+.logo{
+    width: 5%;
+    
+}
+.p1200{
+    display: flex;
+}
+.pen{
+    padding: 10px;
+    border-radius: 500px;
+}
+.biro{
+    margin-right: 10px;
+    color: blue;
+}
+.body{
+    color: blue;
+    text-align: center;
+    margin: 40px 0px;
+}
+.bag{
+    width: 100%;
+}
+.gab{
+    width: 45%;
+}
+.baggy{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+.chain{
+    width: 45%;
+}
+.end{
+    text-align: center;
+    text-transform: uppercase;
+    color: blue;
+    height: 40vh;
+    background-color: pink;
+}

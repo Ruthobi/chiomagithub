@@ -1,0 +1,443 @@
+'use strict';
+/**
+ * Run the Load the Webfont .
+ */
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+Banner.prototype.webFontLoad = function (options) {
+  WebFont.load(options);
+  this.start();
+};
+/**
+ * Run the animation functions.
+ */
+
+
+Banner.prototype.start = function () {
+  var _this = this;
+
+  this.dims = this.bannerWidth + 'x' + this.bannerHeight;
+  this.path = this.bannerData.feed[0];
+  this.showDefault = this.path.Price == '' ? true : false;
+  gsap.registerPlugin(SplitText);
+  this.images = this.getImageUrls([this.path.backgroundImageUrl_InputEditor_asset, this.path.image1Url_InputEditor_asset, this.path.image2Url_InputEditor_asset, this.path.image3Url_InputEditor_asset, this.path.image4Url_InputEditor_asset, this.path.image5Url_InputEditor_asset, this.path.image6Url_InputEditor_asset, this.path.image7Url_InputEditor_asset, this.path.image8Url_InputEditor_asset, this.path.image9Url_InputEditor_asset, this.path.image10Url_InputEditor_asset, this.path.logoUrl_InputEditor_asset]);
+  this.preloadImages(this.images, function () {
+    console.log("Banner width", _this.bannerWidth);
+
+    _this.createElements();
+
+    _this.setup();
+
+    _this.hidePreloader();
+
+    _this.animate();
+
+    _this.bindEvents();
+  });
+};
+
+Banner.prototype.getImageUrls = function (imageElementArray) {
+  var urls = imageElementArray.map(function (imageElement) {
+    return imageElement.hasOwnProperty('Url') ? imageElement.Url : imageElement;
+  });
+  return urls.filter(Boolean);
+};
+/**
+ * Create dom elements.
+ */
+
+
+Banner.prototype.createElements = function () {
+  this.copyArr = [];
+  this.imageArr = [];
+  this.shapeArr = [];
+
+  var isRetina = function isRetina(smartObject) {
+    if (smartObject.hasOwnProperty('retina')) {
+      return smartObject.retina.toLowerCase() == 'true' ? true : false;
+    } else {
+      return false;
+    }
+  };
+
+  this.bgColor = this.smartObject({
+    id: 'backgroundColor_ColorEditor_asset',
+    width: this.bannerWidth,
+    height: this.bannerHeight,
+    backgroundColor: this.path.backgroundColor_ColorEditor_asset,
+    parent: this.banner
+  });
+  this.bgImage = this.smartObject(_objectSpread(_objectSpread({
+    id: 'backgroundImage_InputEditor_asset',
+    backgroundImage: this.path.backgroundImageUrl_InputEditor_asset.hasOwnProperty('Url') ? this.path.backgroundImageUrl_InputEditor_asset.Url : this.path.backgroundImageUrl_InputEditor_asset
+  }, this.path.backgroundImageStyle_InputEditor_asset), {}, {
+    retina: isRetina(this.path.backgroundImageStyle_InputEditor_asset),
+    parent: this.banner
+  }));
+
+  for (var i = 1; i <= 7; i++) {
+    this["shape" + i] = this.smartObject(_objectSpread(_objectSpread({
+      id: "shape" + i + "_InputEditor_asset"
+    }, this.path["shape" + i + "_InputEditor_asset"]), {}, {
+      parent: this.banner
+    }));
+    this.shapeArr.push(this["shape" + i]);
+  }
+
+  for (var e = 1; e <= 10; e++) {
+    this["image" + e] = this.smartObject(_objectSpread(_objectSpread({
+      id: "image" + e + "Style_InputEditor_asset",
+      backgroundImage: this.path["image" + e + "Url_InputEditor_asset"].hasOwnProperty('Url') ? this.path["image" + e + "Url_InputEditor_asset"].Url : this.path["image" + e + "Url_InputEditor_asset"]
+    }, this.path["image" + e + "Style_InputEditor_asset"]), {}, {
+      retina: isRetina(this.path["image" + e + "Style_InputEditor_asset"]),
+      parent: this.path["image" + e + "Style_InputEditor_asset"].hasOwnProperty('parent') ? this[this.path["image" + e + "Style_InputEditor_asset"].parent] : this.banner
+    }));
+    this.imageArr.push(this["image" + e]);
+  }
+
+  for (var j = 1; j <= 10; j++) {
+    this["textGrid" + j] = this.smartObject(_objectSpread(_objectSpread({
+      id: "textGrid" + j + "_InputEditor_text"
+    }, this.path["textGrid" + j + "_InputEditor_text"]), {}, {
+      parent: this.path["textGrid" + j + "_InputEditor_text"].hasOwnProperty('parent') ? this[this.path["textGrid" + j + "_InputEditor_text"].parent] : this.banner
+    }));
+  }
+
+  for (var q = 1; q <= 19; q++) {
+    this["copy" + q] = this.smartObject({
+      id: "copy" + q + "_InputEditor_text",
+      className: 'text',
+      parent: this.path["copy" + q + "_InputEditor_text"].hasOwnProperty('varParent') ? this[this.path["copy" + q + "_InputEditor_text"].varParent] : this.banner
+    });
+
+    if (this.path["copy" + q + "_InputEditor_text"].hasOwnProperty('styles')) {
+      gsap.set(this["copy" + q], this.path[this.path["copy" + q + "_InputEditor_text"].styles + '_InputEditor_text']);
+    }
+
+    gsap.set(this["copy" + q], this.path["copy" + q + "_InputEditor_text"]);
+
+    if (this.path["copy" + q + "_InputEditor_text"].hasOwnProperty('defaultCopy')) {
+      gsap.set(this["copy" + q], {
+        innerHTML: this.path["copy" + q + "_InputEditor_text"].defaultCopy
+      });
+    }
+
+    if (this.path["copy" + q + "_InputEditor_text"].hasOwnProperty('Origin') && this.path.Origin != '') {
+      var _data = this.path["copy" + q + "_InputEditor_text"].Origin;
+      this["copy" + q].innerHTML = this["copy" + q].innerHTML.replace(_data, this.path.Origin);
+    }
+
+    if (this.path["copy" + q + "_InputEditor_text"].hasOwnProperty('Destination') && this.path.Destination != '') {
+      var _data = this.path["copy" + q + "_InputEditor_text"].Destination;
+      this["copy" + q].innerHTML = this["copy" + q].innerHTML.replace(_data, this.path.Destination);
+    }
+
+    if (this.path["copy" + q + "_InputEditor_text"].hasOwnProperty('Currency') && this.path.Currency != '') {
+      var _data = this.path["copy" + q + "_InputEditor_text"].Currency;
+      this["copy" + q].innerHTML = this["copy" + q].innerHTML.replace(_data, this.path.Currency);
+    }
+
+    if (this.path["copy" + q + "_InputEditor_text"].hasOwnProperty('Price') && this.path.Price != '') {
+      var _data = this.path["copy" + q + "_InputEditor_text"].Price;
+      this["copy" + q].innerHTML = this["copy" + q].innerHTML.replace(_data, this.path.Price);
+    }
+
+    if (this.path["copy" + q + "_InputEditor_text"].hasOwnProperty('Deal') && this.path.Deal != '') {
+      var _data = this.path["copy" + q + "_InputEditor_text"].Deal;
+      this["copy" + q].innerHTML = this["copy" + q].innerHTML.replace(_data, this.path.Deal);
+    }
+
+    if (this.path["copy" + q + "_InputEditor_text"].hasOwnProperty('Terms') && this.path.Terms != '') {
+      var _data = this.path["copy" + q + "_InputEditor_text"].Terms;
+      console.log(_data);
+      this["copy" + q].innerHTML = this["copy" + q].innerHTML.replace(_data, this.path.Terms);
+    }
+
+    if (this.path["copy" + q + "_InputEditor_text"].hasOwnProperty('xCheck')) {
+      var _data = this.path["copy" + q + "_InputEditor_text"].xCheck;
+      this["copy" + q].innerHTML = this.path[_data];
+    }
+
+    if (this.path["copy" + q + "_InputEditor_text"].hasOwnProperty('DefaultCopy') && this.path.Price == '') {
+      //var _data = this.path[`copy${q}_InputEditor_text`].DefaultCopy;
+      this["copy" + q].innerHTML = this.path["copy" + q + "_InputEditor_text"].DefaultCopy;
+    }
+
+    this.copyArr.push(this["copy" + q]);
+  }
+
+  this.legal = this.smartObject(_objectSpread(_objectSpread({
+    id: 'legal_InputEditor_text'
+  }, this.path.legal_InputEditor_text), {}, {
+    innerHTML: this.path.legal_InputEditor_text.hasOwnProperty('xCheck') && this.path[this.path.legal_InputEditor_text.xCheck] != '' ? this.path[this.path.legal_InputEditor_text.xCheck] : this.path.legal_InputEditor_text.innerHTML,
+    parent: this.banner
+  }));
+  this.logo = this.smartObject(_objectSpread(_objectSpread({
+    id: 'logoStyle_InputEditor_asset',
+    backgroundImage: this.path.logoUrl_InputEditor_asset.hasOwnProperty('Url') ? this.path.logoUrl_InputEditor_asset.Url : this.path.logoUrl_InputEditor_asset
+  }, this.path.logoStyle_InputEditor_asset), {}, {
+    retina: isRetina(this.path.logoStyle_InputEditor_asset),
+    parent: this.banner
+  }));
+  this.cta = this.smartObject(_objectSpread(_objectSpread({
+    id: 'ctaStyle_InputEditor_text'
+  }, this.path.ctaStyle_InputEditor_text), {}, {
+    parent: this.path.ctaStyle_InputEditor_text.hasOwnProperty('varParent') ? this[this.path.ctaStyle_InputEditor_text.varParent] : this.banner
+  }));
+  this.exit = this.smartObject({
+    id: 'EXIT',
+    zIndex: 100,
+    width: this.bannerWidth,
+    height: this.bannerHeight,
+    parent: this.banner
+  });
+};
+/**
+ * Setup initial element states.
+ */
+
+
+Banner.prototype.setup = function () {
+  var _this2 = this;
+
+  if (this.showDefault == true) {
+    gsap.set(this.textGrid3, {
+      display: 'none'
+    });
+    if (this.path.ctaStyle_InputEditor_text.hasOwnProperty('defaultX')) gsap.set(this.cta, {
+      x: this.path.ctaStyle_InputEditor_text.defaultX
+    });
+    if (this.path.ctaStyle_InputEditor_text.hasOwnProperty('defaultY')) gsap.set(this.cta, {
+      y: this.path.ctaStyle_InputEditor_text.defaultY
+    });
+
+    for (var q = 1; q <= 19; q++) {
+      if (this.path["copy" + q + "_InputEditor_text"].hasOwnProperty('hideIfDefault')) {
+        gsap.set(this["copy" + q], {
+          display: 'none'
+        });
+      }
+    }
+  }
+
+  if (this.showDefault == false) {
+    gsap.set(this.textGrid5, {
+      display: 'none'
+    });
+  }
+
+  this.banner.addEventListener('mouseover', function () {
+    _this2.cta.to({
+      backgroundColor: _this2.path.ctaStyle_InputEditor_text.rollOverBG,
+      color: _this2.path.ctaStyle_InputEditor_text.rollOverText
+    });
+  });
+  this.banner.addEventListener('mouseout', function () {
+    _this2.cta.to({
+      backgroundColor: _this2.path.ctaStyle_InputEditor_text.backgroundColor,
+      color: _this2.path.ctaStyle_InputEditor_text.color
+    });
+  });
+};
+/**
+ * Hide the preloader.
+ */
+
+
+Banner.prototype.hidePreloader = function () {
+  gsap.to('.preloader', 1, {
+    autoAlpha: 0
+  });
+};
+/**
+ * Animation timeline.
+ */
+
+
+Banner.prototype.animate = function () {
+  var logoAnim = true;
+  var clearCTA = false;
+  var ctaDelay = '-=0.3';
+  var imageLoops = 1;
+  var multipleLegal = true;
+  gsap.set(this.span, this.path.copy10_InputEditor_text);
+  var frame1Copy = [];
+  var frame2Copy = [];
+  var frame3Copy = [];
+
+  if (this.path.shape5_InputEditor_asset.hasOwnProperty('logoAnim')) {
+    logoAnim = this.path.shape5_InputEditor_asset.logoAnim;
+  }
+
+  if (this.path.shape5_InputEditor_asset.hasOwnProperty('clearCTA')) {
+    clearCTA = this.path.shape5_InputEditor_asset.clearCTA;
+  }
+
+  for (var i = 0; i <= this.textGrid1.childNodes.length - 1; i++) {
+    this["grid1Copy" + i] = new SplitText(this.textGrid1.childNodes[i], {
+      type: "lines"
+    });
+    frame1Copy.push(this["grid1Copy" + i].lines);
+  }
+
+  for (var j = 0; j <= this.textGrid2.childNodes.length - 1; j++) {
+    this["grid2Copy" + j] = new SplitText(this.textGrid2.childNodes[j], {
+      type: "lines"
+    });
+    frame2Copy.push(this["grid2Copy" + j].lines);
+  }
+
+  for (var h = 0; h <= this.textGrid3.childNodes.length - 1; h++) {
+    var ele = this.path[this.textGrid3.childNodes[h].id].arr;
+    frame3Copy[ele] = this.textGrid3.childNodes[h];
+  }
+
+  if (this.path.shape5_InputEditor_asset.hasOwnProperty('imageLoops')) {
+    imageLoops = this.path.shape5_InputEditor_asset.imageLoops;
+  } // imageLoops
+
+
+  this.imgAnim = gsap.timeline({
+    paused: true,
+    repeat: imageLoops
+  }).set(this.image3, {
+    autoAlpha: 0
+  }, '+=1').set(this.image2, {
+    autoAlpha: 0
+  }, '+=1').set(this.image1, {
+    autoAlpha: 1
+  }, '+=1');
+  this.lockupAnim = gsap.timeline({
+    paused: true
+  }).from(frame1Copy, {
+    duration: 0.3,
+    autoAlpha: 0,
+    y: this.path.shape5_InputEditor_asset.LockupOffSetY,
+    stagger: 0.3,
+    ease: 'sine.out'
+  });
+  this.timeline = gsap.timeline({
+    paused: false
+  });
+
+  if (logoAnim == true) {
+    this.timeline.from(this.logo, {
+      duration: 0.3,
+      autoAlpha: 0
+    }, 'f1+=0.2');
+  }
+
+  this.timeline.add(this.lockupAnim.play(), '>').add(this.imgAnim.play(), '>').from(this.shape1, {
+    duration: 0.5,
+    height: 0,
+    ease: 'sine.out'
+  }).addLabel('f2').from(this.image9, {
+    duration: 0.3,
+    autoAlpha: 0
+  }, '>-0.4').from(this.image10, {
+    duration: 0.3,
+    autoAlpha: 0
+  }, 'f2').from(this.legal, {
+    duration: 0.3,
+    autoAlpha: 0
+  }, 'f2').from(this.copy19, {
+    duration: 0.3,
+    autoAlpha: 0
+  }, 'f2').from(frame2Copy, {
+    duration: 1,
+    autoAlpha: 0,
+    y: '-=20',
+    stagger: 0.2,
+    ease: CustomEase.create("custom", "M0,0,C0.032,0.678,0.414,1,0.5,1,0.604,1,0.374,1,1,1")
+  }, 'f2').to(frame2Copy, {
+    duration: 0.3,
+    autoAlpha: 0,
+    y: '+=20',
+    stagger: -0.15,
+    ease: 'sine.out'
+  }, 'outf2+=2').to(this.copy19, {
+    duration: 0.3,
+    autoAlpha: 0
+  }, 'outf2+=2').from(this.copy20, {
+    duration: 0.3,
+    autoAlpha: 0
+  }, 'ef').from(frame3Copy, {
+    duration: 1,
+    autoAlpha: 0,
+    y: '-=20',
+    stagger: 0.2,
+    ease: CustomEase.create("custom", "M0,0,C0.032,0.678,0.414,1,0.5,1,0.604,1,0.374,1,1,1")
+  }, 'ef').from(this.textGrid5.childNodes, {
+    duration: 1,
+    autoAlpha: 0,
+    y: '-=20',
+    stagger: 0.2,
+    ease: CustomEase.create("custom", "M0,0,C0.032,0.678,0.414,1,0.5,1,0.604,1,0.374,1,1,1")
+  }, 'ef');
+
+  if (clearCTA == 'true') {
+    this.timeline.to(frame3Copy, {
+      duration: 0.3,
+      autoAlpha: 0,
+      y: '+=20',
+      stagger: -0.15,
+      ease: 'sine.out'
+    }, 'ef+=2');
+    this.timeline.to(this.textGrid5, {
+      duration: 0.3,
+      autoAlpha: 0,
+      y: '+=20',
+      stagger: -0.15,
+      ease: 'sine.out'
+    }, 'ef+=2');
+    ctaDelay = 'cta';
+  }
+
+  this.timeline.from(this.cta, {
+    duration: 0.5,
+    autoAlpha: 0
+  }, ctaDelay);
+};
+/**
+ * Setup preview data element states.
+ */
+
+
+Banner.prototype.setupPreview = function (targetId, settings) {
+  var _settings = settings;
+  console.log(targetId);
+  console.log(settings);
+
+  if (targetId == 'logo_InputEditor_asset') {
+    if (settings.hasOwnProperty('backgroundImage')) {
+      _settings.backgroundImage = this.getImagePath(settings.backgroundImage);
+      gsap.set(this.logo, {
+        backgroundImage: 'url(' + _settings.backgroundImage + ')'
+      });
+    } else {
+      gsap.set(this.logo, _settings);
+    }
+  }
+
+  if (targetId == 'backgroundImage_InputEditor_asset') {
+    if (settings.hasOwnProperty('backgroundImage')) {
+      _settings.backgroundImage = this.getImagePath(settings.backgroundImage);
+      gsap.set(this.bgImage, {
+        backgroundImage: 'url(' + _settings.backgroundImage + ')'
+      });
+    } else {
+      gsap.set(this.bgImage, _settings);
+    }
+  }
+
+  if (targetId == 'textStyle_InputEditor_text') {
+    gsap.set(this.copyArr, _settings);
+  } else {
+    gsap.set("#" + targetId, _settings);
+  }
+};

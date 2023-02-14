@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://127.0.0.1:5500/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HERO SECTION</title>
+    
+<link rel="stylesheet" href="./HERO SECTION_files/hero.css"></head>
+
+<body>
+    <div class="header-div">
+        <div>
+            <img src="./HERO SECTION_files/property pix.jpg" alt="" class="img-div">
+        </div>
+        <div>
+            <ul> home</ul>
+            <ul>about</ul>
+            <ul>services</ul>
+            <ul>contact</ul>
+            <ul>blog</ul>
+        </div>
+    </div>
+    <div>
+        <img src="./HERO SECTION_files/background.jpg" alt="photo" class="bckgrd-img"> 
+    </div>
+    <div class="div-2">
+        <p class="ptag"> SERVICES</p>
+        <p class="ptag"> check out the great services we offer</p>
+        <div class="div-1"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni pariatur ullam facilis
+            excepturi aut ducimus nemo id odit est sunt, at fuga, hic totam fugiat qui quidem, possimus tempore
+            consequuntur.</div>
+        <div class="div-1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae ducimus nemo repellendus
+            libero quo nihil vero accusamus quod quos tenetur inventore placeat totam magni, reprehenderit eius
+            voluptatibus in consectetur est?</div>
+        <div class="div-1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta dolor nihil facilis libero,
+            nemo eum aliquam eos corrupti sequi earum exercitationem ducimus maiores vero quaerat repellat
+            necessitatibus architecto temporibus dignissimos.</div>
+        <div class="div-1"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam molestias, unde provident
+            dolores distinctio cum voluptatum exercitationem odit, temporibus tempore sapiente numquam placeat harum.
+            Totam voluptatum veritatis possimus soluta unde.</div>
+    </div>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+</body></html>

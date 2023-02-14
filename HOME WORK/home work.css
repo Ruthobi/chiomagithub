@@ -1,0 +1,34 @@
+.div-1{
+    background-color: azure;
+    border: solid grey 1px;
+    }
+.write2{
+    color: brown;
+    }
+.write4{
+    color: red;
+    text-transform: capitalize;
+    font-weight: bolder;
+}
+.write6{
+    color: blue;
+}
+.item{
+    list-style-type: lower-alpha;
+}
+.state-1{
+    color: red;
+    text-transform: capitalize;
+}
+.lor-1::first-letter{
+    color: red;
+    font-style: italic;
+
+}
+.state-2{
+    color: blue;
+}
+.div-2{
+    background-color: azure;
+    border-bottom: solid grey 3px;
+}
